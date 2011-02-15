@@ -428,7 +428,7 @@ class NameObject(str, PdfObject):
             raise utils.PdfReadError, "name read error"
         while True:
             tok = stream.read(1)
-            if tok.isspace() or tok in NameObject.delimiterCharacters:
+            if not tok or tok.isspace() or tok in NameObject.delimiterCharacters:
                 stream.seek(-1, 1)
                 break
             name += tok
